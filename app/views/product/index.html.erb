@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<h1>Drink List:</h1>
+
+<table class="table">
+<tr class>
+  <th>Item</th>
+  <th>Description</th>
+  <th>Size</th>
+  <th>Price</th>
+  <th>Image</th>
+</tr>
+<% @products.each do |product| %>
+  <tr>
+    <td class><%= product.item %></td>
+    <td class><%= product.description %></td>
+    <td class><%= product.size %></td>
+    <td class><%= product.price %></td>
+    <td><img src="<%= product.image %>" width="40" height="60"></td>
+  </tr>
+<% end %>
+
+
+
+</table>
