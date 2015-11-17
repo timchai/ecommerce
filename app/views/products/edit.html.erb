@@ -1,0 +1,29 @@
+<%= form_tag "/products/#{@product.id}", method: :patch do %>
+<div>
+  <%= label_tag :item, "Enter item here:" %>
+  <%= text_area_tag :item, @product.item %>
+  
+</div>
+<div>
+  <%= label_tag :description, "Enter description here:" %>
+  <%= text_area_tag :description, @product.description %>
+  
+</div>
+<div>
+  <%= label_tag :size, "Enter size here:" %>
+  <%= text_area_tag :size, @product.size %>
+  
+</div>
+<div>
+  <%= label_tag :price, "Enter price here:" %>
+  <%= text_area_tag :price, @product.size %>
+</div>
+<div>
+  <%= label_tag :image, "Enter image here:" %>
+  <%= text_area_tag :image, @product.image %>
+</div>
+<div>
+  <%= submit_tag "Send product information:" %>
+</div>
+
+<% end %>
