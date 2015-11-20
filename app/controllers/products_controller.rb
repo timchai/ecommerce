@@ -3,63 +3,57 @@ class ProductsController < ApplicationController
   def index
     if params[:view] == "discounted"
       @products = Product.where("price < ?", 50)
+    elsif params[:view] == "ascending_sort"
+      @products = Product.order(:price)
+    elsif params[:view] == "descending_sort"
+      @products = Product.order(price: :desc)  
     else
       @products = Product.all
+    end 
+  end
+
+  def show
+    if params[:id] == "random"
+      @product = Product.all.sample
+    else
+      @product = Product.find_by(id: params[:id])
     end
   end
 
   def new
   end
 
-  def new_product
-  end
-
-  def product_result
-
-    Product.create(item: params[:item], description: params[:description], size: params[:size], price: params[:price])
-  end
-
   def create
-    item = params[:item]
-    description = params[:description]
-    size = params[:size]
-    price = params[:price]
-    image = params[:image]
-    @product = Product.create(item: item, description: description, size: size, price: price, image: image)
+    @product = Product.create(item: params[:item], description: params[:description], size: params[:size], price: params[:price], image: params[:image])
     flash[:success] = "Product Created"
     redirect_to "/products/#{@product.id}"
   end
 
-  def show
-    id = params[:id]
-    @product = Product.find_by(id: id)
-  end
+  #def show
+    #@product = Product.find_by(id: params[:id])
+  #end
 
   def edit
-    id = params[:id]
-    @product = Product.find_by(id: id)
+    @product = Product.find_by(id: params[:id])
   end
 
   def update
-    id = params[:id]
-    @product = Product.find_by(id: id)
-    
-    item = params[:item]
-    description = params[:description]
-    size = params[:size]
-    price = params[:price]
-    image = params[:image]
-    @product.update(item: item, description: description, size: size, price: price, image: image)
+    @product = Product.find_by(id: params[:id])
+    @product.update(item: params[:item], description: params[:description], size: params[:size], price: params[:price], image: params[:image])
     flash[:success] = "Product Updated"
     redirect_to "/products/#{@product.id}"
   end
 
   def destroy
-    id = params[:id]
-    product = Product.find_by(id: id)
+    product = Product.find_by(id: params[:id])
     product.destroy
     flash[:success] = "Product Deleted"
     redirect_to "/products"
   end
 
+  def search
+    search_term = params[:search]
+    @products = Product.where("item LIKE ? OR description LIKE ?", "%#{search_term}%", "%#{search_term}%")
+    render :index
+  end
 end

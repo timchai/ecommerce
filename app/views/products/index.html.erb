@@ -1,9 +1,11 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<br>
+<h1>Dev No!</h1>
+<p><%= link_to "Show All Products", "/products/" %></p>
+<p><%= link_to "Show Discounted Items", "/products?view=discounted" %></p>
+<p><%= link_to "Priced low to high", "/products?view=ascending_sort" %></p>
+<p><%= link_to "Priced high to low", "/products?view=descending_sort" %></p>
+<p><%= link_to "Random Product", "/products/random" %></p>
 
-<h1>Drink List:</h1>
-<%= link_to "Show Discounted Items", "/products?view=discounted" %>
 
 <table class="table">
 <tr class>
@@ -18,7 +20,7 @@
     <td class><%= link_to product.item, "/products/#{product.id}" %></td>
     <td class><%= product.description %></td>
     <td class><%= product.size %></td>
-    <td class><%= product.price %></td>
+    <td class><%= number_to_currency(product.price) %></td>
     <td><img src="<%= product.image %>" width="40" height="60"></td></a>
   </tr>
 <% end %>
