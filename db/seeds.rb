@@ -1,6 +1,3 @@
-User.create!([
-  {email: "timothy.y.chai@gmail.com", encrypted_password: "$2a$10$imY.fEVgCcLDd2wA/Kfaq.6W3oqZlphYeJ6Y/kw7jw9b6oLOpUA.y", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 10, current_sign_in_at: "2015-11-24 20:50:30", last_sign_in_at: "2015-11-23 20:58:04", current_sign_in_ip: "::1", last_sign_in_ip: "::1"}
-])
 Image.create!([
   {product_id: 1, image_url: "https://s3.amazonaws.com/rapgenius/filepicker%2F5xex6o6kQKG64PNtjNtB_cabernet_sauvignon.jpg"},
   {product_id: 2, image_url: "https://img.thewhiskyexchange.com/540/macob.12yo.jpg"},
