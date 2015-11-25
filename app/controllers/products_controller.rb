@@ -24,14 +24,11 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.create(item: params[:item], description: params[:description], size: params[:size], price: params[:price], image: params[:image])
+    @product = Product.create(item: params[:item], description: params[:description], size: params[:size], price: params[:price], user_id: current_user.id)
+  #  @image = Image.create(image: params[:image], product_id: @product.id)
     flash[:success] = "Product Created"
     redirect_to "/products/#{@product.id}"
   end
-
-  #def show
-    #@product = Product.find_by(id: params[:id])
-  #end
 
   def edit
     @product = Product.find_by(id: params[:id])
@@ -39,7 +36,7 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find_by(id: params[:id])
-    @product.update(item: params[:item], description: params[:description], size: params[:size], price: params[:price], image: params[:image])
+    @product.update(item: params[:item], description: params[:description], size: params[:size], price: params[:price])
     flash[:success] = "Product Updated"
     redirect_to "/products/#{@product.id}"
   end
@@ -56,4 +53,6 @@ class ProductsController < ApplicationController
     @products = Product.where("item LIKE ? OR description LIKE ?", "%#{search_term}%", "%#{search_term}%")
     render :index
   end
+
+  
 end

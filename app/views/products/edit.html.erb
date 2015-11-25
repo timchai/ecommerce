@@ -16,12 +16,9 @@
 </div>
 <div>
   <%= label_tag :price, "Enter price here:" %>
-  <%= text_area_tag :price, @product.size %>
+  <%= text_area_tag :price, @product.price %>
 </div>
-<div>
-  <%= label_tag :image, "Enter image here:" %>
-  <%= text_area_tag :image, @product.image %>
-</div>
+
 <div>
   <%= submit_tag "Send product information:" %>
 </div>

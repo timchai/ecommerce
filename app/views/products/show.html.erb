@@ -6,7 +6,28 @@
 <h2><%= @product.sale_message %></h2>
 <h2><%= number_to_currency(@product.tax) %></h2>
 <h2><%= number_to_currency(@product.total) %></h2>
+<h2><%= @product.supplier.name %></h2>
+<h2><% @product.images.each do |image| %>
+<img src="<%= image.image_url %>" width="40" height="60" class="img-responsive"></h2>
+<% end %>
+<br>
+<%= link_to "Delete", "/products/#{@product.id}", method: :delete%><br>
+<%= link_to "Edit", "/products/#{@product.id}/edit" %><br>
 
-<%= link_to "Delete", "/products/#{@product.id}", method: :delete%>
-<%= link_to "Edit", "/products/#{@product.id}/edit" %>
+<%= form_tag '/orders', method: :post do %>
+  <div>
+    <%= label_tag :quantity, "Enter Quantity:" %>
+    <%= text_field_tag :quantity %>
+    <%= hidden_field :product_id, @product.id %>
+  </div>
+
+  <div>
+    <%= label_tag :product_id %>
+    <%= text_field_tag :product_id %>
+  </div>
+
+  <a>
+  <%= submit_tag "Buy Now" %>
+</a>
+  <% end %>
 

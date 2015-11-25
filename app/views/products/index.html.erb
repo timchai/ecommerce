@@ -21,7 +21,9 @@
     <td class><%= product.description %></td>
     <td class><%= product.size %></td>
     <td class><%= number_to_currency(product.price) %></td>
-    <td><img src="<%= product.image %>" width="40" height="60"></td></a>
+    <td><img src="<%= product.images.first.image_url %>" width="40" height="60">
+    
+    </td></a>
   </tr>
 <% end %>
 </table>

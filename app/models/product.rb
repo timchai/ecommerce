@@ -1,5 +1,9 @@
 class Product < ActiveRecord::Base
-
+  belongs_to :supplier
+  has_many :images
+  belongs_to :user
+  has_many :orders
+  
   def friendly_created_at
     created_at.strftime("%A, %d %b %Y %l:%M %p")
   end
@@ -23,4 +27,5 @@ class Product < ActiveRecord::Base
   def self.get_discounted
     Product.where("price < ?", 50)
   end
+
 end
