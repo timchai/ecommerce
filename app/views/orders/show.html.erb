@@ -1,13 +1,13 @@
 <h1>Thanks for the order</h1>
 <p>Order ID: <%= @order.id %></p>
-<p>Product: <%= @order.product.name %></p>
+<p>Product: <%= @order.product.item %></p>
 <p>Quantity: <%= @order.quantity %></p>
 <p>Subtotal: <%= @order.subtotal %></p>
 <p>Tax: <%= @order.tax %></p>
 <p>Total: <%= @order.total %></p>
 <p>Purchased: <%= @order.created_at %></p>
 <p>Purchased By: <%= @order.user.email %></p>
-<img src="<%= order.product.images.first.image_url %>">
+<img src="<%= @order.product.images.first.image_url %>">
 
 
 
@@ -15,4 +15,3 @@
 
 
 
-<h1><%= @order.quantity %></h1>
