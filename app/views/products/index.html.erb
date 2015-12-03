@@ -1,12 +1,13 @@
 <br>
 <h1>Dev No!</h1>
-<p><%= link_to "Show All Products", "/products/" %></p>
-<p><%= link_to "Show Discounted Items", "/products?view=discounted" %></p>
-<p><%= link_to "Priced low to high", "/products?view=ascending_sort" %></p>
-<p><%= link_to "Priced high to low", "/products?view=descending_sort" %></p>
-<p><%= link_to "Random Product", "/products/random" %></p>
-
-
+  <p><%= link_to "Show All Products", "/products/" %></p>
+  <p><%= link_to "Show Discounted Items", "/products?view=discounted" %></p>
+  <p><%= link_to "Priced low to high", "/products?view=ascending_sort" %></p>
+  <p><%= link_to "Priced high to low", "/products?view=descending_sort" %></p>
+  <p><%= link_to "Random Product", "/products/random" %></p>
+  <% @categories.each do |category| %>
+    <p><%= link_to "#{category.name}", "/products?category=#{category.name}" %></p>
+  <% end %>
 <table class="table">
 <tr class>
   <th>Item</th>

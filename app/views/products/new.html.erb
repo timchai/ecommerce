@@ -1,22 +1,30 @@
+<ul>
+  <% if @product && @product.errors.any? %>
+    <% @product.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  <% end %>
+</ul>
+
 <%= form_tag '/products', method: :post do %>
 <div>
   <%= label_tag :item, "Enter item here:" %>
-  <%= text_area_tag :item %>
+  <%= text_area_tag :item, @product.item %>
 </div>
 
 <div>
   <%= label_tag :description, "Enter description here:" %>
-  <%= text_area_tag :description %>
+  <%= text_area_tag :description, @product.description %>
 </div>
 
 <div>
   <%= label_tag :size, "Enter size here:" %>
-  <%= text_area_tag :size %>
+  <%= text_area_tag :size, @product.size %>
 </div>
 
 <div>
   <%= label_tag :price, "Enter price here:" %>
-  <%= text_area_tag :price %>
+  <%= text_area_tag :price, @product.price %>
 </div>
 
 <div>

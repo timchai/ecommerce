@@ -3,7 +3,13 @@ class Product < ActiveRecord::Base
   has_many :images
   belongs_to :user
   has_many :orders
+  has_many :categorized_products
+  has_many :categories, through: :categorized_products
+  has_many :carted_products
+  has_many :orders, through: :carted_products
   
+  #validates :item, :description, :size, :price, presence: true
+
   def friendly_created_at
     created_at.strftime("%A, %d %b %Y %l:%M %p")
   end
