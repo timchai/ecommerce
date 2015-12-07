@@ -1,4 +1,10 @@
-<ul>
+<h1>Add Products</h1>
+
+<%= render "form" %>
+
+
+
+<!-- <ul>
   <% if @product && @product.errors.any? %>
     <% @product.errors.full_messages.each do |message| %>
       <li><%= message %></li>
@@ -28,7 +34,12 @@
 </div>
 
 <div>
+  <%= label_tag :supplier %>
+  <%= collection_select :supplier, :supplier_id, Supplier.all, :id, :name %>
+</div>
+
+<div>
   <%= submit_tag "Send product information:" %>
 </div>
 
-<% end %>
+<% end %> -->

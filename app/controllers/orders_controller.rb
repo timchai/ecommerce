@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
     total = subtotal + tax
     @order = Order.new(user_id: current_user.id, subtotal: subtotal, tax: tax, total: total)
     if @order.save
+      session[:cart_count] = nil
       to_buy_products.update_all(status: "Purchased", order_id: @order.id)
       redirect_to "/orders/#{@order.id}"
 

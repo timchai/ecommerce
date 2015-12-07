@@ -27,15 +27,17 @@ class ProductsController < ApplicationController
   end
 
   def new
-    if current_user && current_user.admin?
+  #  if current_user && current_user.admin?
     @product = Product.new
-    else
-      redirect_to "/"
-    end
+    @product.images.build
+  #  else
+  #    redirect_to "/"
+  #  end
   end
 
   def create
-    @product = Product.new(id: params[:id], item: params[:item], description: params[:description], size: params[:size], price: params[:price], user_id: current_user.id)
+    @product = Product.new(product_params)
+   # @product = Product.new(id: params[:id], item: params[:item], description: params[:description], size: params[:size], price: params[:price], user_id: current_user.id, supplier_id: params[:suppler][:supplier_id])
     if @product.save
       flash[:success] = "Product Created"
       redirect_to "/products/#{@product.id}"
@@ -50,7 +52,8 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find_by(id: params[:id])
-    @product.update(id: params[:id], item: params[:item], description: params[:description], size: params[:size], price: params[:price])
+    @product.update(product_params)
+    #@product.update(id: params[:id], item: params[:item], description: params[:description], size: params[:size], price: params[:price])
     flash[:success] = "Product Updated"
     redirect_to "/products/#{@product.id}"
   end
@@ -67,5 +70,10 @@ class ProductsController < ApplicationController
     @products = Product.where("item ILIKE ? OR description ILIKE ?", "%#{search_term}%", "%#{search_term}%")
     render :index
   end
-  
+
+  private
+
+  def product_params
+    params.require(:product).permit(:id, :item, :description, :size, :price, :supplier_id, images_attributes: [:image_url])
+  end
 end

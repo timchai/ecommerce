@@ -1,0 +1,53 @@
+<% if @product && @product.errors.any? %>
+    <% @product.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= form_for @product do |f| %>
+  <div>
+    <%= f.label :item %>
+    <%= f.text_field :item %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <div>
+    <%= f.label :size %>
+    <%= f.text_field :size %>
+  </div>
+    <div>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+    <div>
+    <%= f.label :size %>
+    <%= f.text_field :size %>
+  </div>
+  <div>
+  <%= f.label :supplier %>
+  <%= f.collection_select :supplier_id, Supplier.all, :id, :name %>
+  </div>
+  <div>
+  <%= f.fields_for :images do |ff| %>
+    <div>
+      <%= ff.label :image_url %>
+      <%= ff.text_field :image_url %>
+     </div> 
+  <% end %>
+  </div>
+  <div>
+  <%= f.fields_for :images do |ff| %>
+    <div>
+      <%= ff.label :image_url %>
+      <%= ff.text_field :image_url %>
+     </div> 
+  <% end %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+
+  <% end %>
